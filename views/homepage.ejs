@@ -8,7 +8,8 @@
 
 <div class="default-page">
 
-  <h1>Testing exposeLocalsToBrowser()...</h1>
+  <h1><%= req.url %></h1>
+  <h2>Testing exposeLocalsToBrowser()...</h2>
   <p>Try accessing <code>window.SAILS_LOCALS</code> in the browser console.</p>
   <p>See layout.ejs for implementation.</p>
 
@@ -22,7 +23,8 @@
       <li><a href="/edge-cases">/edge-cases</a> <em>(weird stuff passed in; your undefineds, your nulls, your functions, etc)</em></li>
       <li><a href="/nested">/nested</a> <em>(deeply nested stuff passed in)</em></li>
       <li><a href="/basic-xss-attack">/basic-xss-attack</a> <em>(your everday XSS attack)</em></li>
-      <li><a href="/misc-xss-attacks">/misc-xss-attacks</a> <em>(a bunch of other XSS attacks)</em></li>
+      <li><a href="/nested-xss-attack">/nested-xss-attack</a> <em>(your everday XSS attack, a few times over, nested in a handful of unassuming little dictionaries and arrays)</em></li>
+      <li><a href="/misc-xss-attacks">/misc-xss-attacks</a> <em>(a bunch of other XSS attacks, nested in an array)</em></li>
     </ul>
   </div>
 </div>

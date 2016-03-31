@@ -35,17 +35,48 @@ module.exports.routes = {
   },
 
   'get /basic-xss-attack': function (req,res) {
-    // From https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
     return res.view('homepage', {
-      basicXssAttack: '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>'
+      xssAttack: '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>'
+    });
+  },
+
+  'get /nested-xss-attack': function (req,res) {
+    return res.view('homepage', {
+      xssAttack: {
+        surprise: '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>',
+        foo: {
+          bar: {
+            baz: {
+              surprise: [
+                '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>',
+                [
+                  [
+                    '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>'
+                  ]
+                ]
+              ]
+            },
+            surprise: '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>'
+          }
+        }
+      }
     });
   },
 
   'get /misc-xss-attacks': function (req, res) {
-    // From https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
     return res.view('homepage', {
       xssAttacks: [
-        // TODO
+
+        // • https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet#XSS_Locator
+        '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>',
+
+        // • https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet#On_error_alert
+        '<IMG SRC=/ onerror="alert(String.fromCharCode(88,83,83))"></img>',
+
+        // ...
+        //
+        // Please feel free to add more here!
+        // see https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
       ]
     });
   },

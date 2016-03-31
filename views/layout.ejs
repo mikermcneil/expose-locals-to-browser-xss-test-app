@@ -70,7 +70,11 @@
       ========================
     -->
     <%- exposeLocalsToBrowser() %>
-
+    <script>
+      // From here on out, we can access window.SAILS_LOCALS.
+      console.log('Exposed locals to browser as `window.SAILS_LOCALS`.\n'+
+        'Data:', window.SAILS_LOCALS);
+    </script>
 
 
     <!--

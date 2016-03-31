@@ -22,28 +22,101 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+  'get /': { view: 'homepage' },
 
-  '/': {
-    view: 'homepage'
-  }
+  'get /basic': function (req, res) {
+    return res.view('homepage', {
+      foo: 323523,
+      bar: 'stuff',
+      baz: false,
+      bing: [],
+      bong: {},
+    });
+  },
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+  'get /edge-cases': function (req, res) {
+    return res.view('homepage', {
+      foo: '*',
+      bar: '===',
+      baz: '->',
+      bing: '',
+      bong: 0,
+      beep: null,
+      boop: undefined,// << will be stripped
+      bop: function (a,b){console.log('oh hey');},// << will be stringified
+    });
+  },
+
+  'get /nested': function (req, res) {
+    return res.view('homepage', {
+      nestedInDictionary: {
+        foo: 323523,
+        bar: 'stuff',
+        baz: false,
+        bing: [],
+        bong: {},
+      },
+      nestedInArray: [
+        323523,
+        'stuff',
+        false,
+        [],
+        {},
+      ],
+      nestedDeep: {
+        deeper: {
+          evenDeeper: [
+            {
+              anotherDictionary: {
+                foo: 323523,
+                bar: 'stuff',
+                baz: false,
+                bing: [],
+                bong: {},
+              }
+            },
+            {
+              anotherArray: [
+                323523,
+                'stuff',
+                false,
+                [],
+                {},
+              ],
+              doubleDeepArrays: [
+                [
+                  [
+                    [],
+                    [323523,'32532',undefined],
+                    ['null','undefined',null,undefined]
+                  ]
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      edgeCasesNestedInDictionary: {
+        foo: '*',
+        bar: '===',
+        baz: '->',
+        bing: '',
+        bong: 0,
+        beep: null,
+        boop: undefined,// << will be stripped
+        bop: function (a,b){console.log('oh hey');},// << will be stringified
+      },
+      edgeCasesNestedInArray: [
+        '*',
+        '===',
+        '->',
+        '',
+        0,
+        null,
+        undefined,// << will be stripped
+        function (a,b){console.log('oh hey');},// << will be stringified
+      ]
+    });
+  },
 
 };

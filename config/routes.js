@@ -90,7 +90,7 @@ module.exports.routes = {
       bong: 0,
       beep: null,
       boop: undefined,// << will be stripped
-      bop: function (a,b){console.log('oh hey');},// << will be stringified
+      bop: function (a,b){console.log('oh hey');},
     });
   },
 
@@ -151,7 +151,7 @@ module.exports.routes = {
         bong: 0,
         beep: null,
         boop: undefined,// << will be stripped
-        bop: function (a,b){console.log('oh hey');},// << will be stringified
+        bop: function (a,b){console.log('oh hey');},
       },
       edgeCasesNestedInArray: [
         '*',
@@ -161,7 +161,7 @@ module.exports.routes = {
         0,
         null,
         undefined,// << will be stripped
-        function (a,b){console.log('oh hey');},// << will be stringified
+        function (a,b){console.log('oh hey');},
       ]
     });
   },

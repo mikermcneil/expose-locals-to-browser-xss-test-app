@@ -166,4 +166,10 @@ module.exports.routes = {
     });
   },
 
+  'get /giant-objects': function (req,res) {
+    return res.view('homepage', {
+      sails: req._sails
+    });
+  },
+
 };

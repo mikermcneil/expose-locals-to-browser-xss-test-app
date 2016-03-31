@@ -34,6 +34,22 @@ module.exports.routes = {
     });
   },
 
+  'get /basic-xss-attack': function (req,res) {
+    // From https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
+    return res.view('homepage', {
+      basicXssAttack: '\';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";\nalert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--\n></SCRIPT>">\'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>'
+    });
+  },
+
+  'get /misc-xss-attacks': function (req, res) {
+    // From https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet
+    return res.view('homepage', {
+      xssAttacks: [
+        // TODO
+      ]
+    });
+  },
+
   'get /edge-cases': function (req, res) {
     return res.view('homepage', {
       foo: '*',

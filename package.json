@@ -20,7 +20,7 @@
     "grunt-sync": "0.2.4",
     "include-all": "~0.1.6",
     "rc": "1.0.1",
-    "sails": "~0.12.1",
+    "sails": "git://github.com/balderdashy/sails.git#9181ed9960b1c8d560a54e83e75f989f376ff3e3",
     "sails-disk": "~0.10.9"
   },
   "scripts": {

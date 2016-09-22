@@ -5,9 +5,9 @@ a [Sails](http://sailsjs.org) application
 
 ### To test
 
-Lift, then visit http://localhost:1337/ for available test cases.
+Lift, then visit [http://localhost:1337/](http://localhost:1337/) for available test cases.
 
-For a quick experiment, try http://localhost:1337/basic-xss-attack.
+For a quick experiment, try [http://localhost:1337/basic-xss-attack](http://localhost:1337/basic-xss-attack).
 
 
 ### Changelog
